@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { Identifier, useListContext, DataProviderContext } from 'react-admin';
 import { Box } from '@mui/material';
