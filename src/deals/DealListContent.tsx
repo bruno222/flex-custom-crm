@@ -66,7 +66,7 @@ export const DealListContent = () => {
         }
         setDeals(newDeals);
         setData(indexById(unorderedDeals));
-    }, [unorderedDeals, isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [unorderedDeals, isLoading]);
 
     if (isLoading) return null;
 
