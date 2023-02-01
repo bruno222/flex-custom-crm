@@ -30,7 +30,7 @@ const Header = () => {
                                 alt="Bosch Logo"
                             />
                             <Typography component="span" variant="h5">
-                                Atomic CRM
+                                {process.env.REACT_APP_TITLE}
                             </Typography>
                         </Box>
                         <Box>
