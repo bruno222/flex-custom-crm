@@ -8,8 +8,11 @@ import {
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
+import { useDispatch } from 'react-redux'
+import { makeOutboundCall } from '../state/flexStateSlice'
 
 export const Welcome = () => {
+  const dispatch = useDispatch()
     return (
         <Card
             sx={{
@@ -51,8 +54,9 @@ export const Welcome = () => {
                 <Button
                     variant="contained"
                     fullWidth
-                    href="https://marmelab.com/react-admin"
+                    onClick={() => dispatch(makeOutboundCall('+447946180713'))}
                     startIcon={<HomeIcon />}
+
                 >
                     React-admin site
                 </Button>

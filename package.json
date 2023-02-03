@@ -7,6 +7,7 @@
         "@mui/material": "^5.0.2",
         "@nivo/bar": "^0.67.0",
         "@nivo/core": "^0.67.0",
+        "@reduxjs/toolkit": "^1.9.2",
         "clsx": "^1.1.1",
         "date-fns": "^2.19.0",
         "faker": "~5.4.0",
@@ -18,6 +19,7 @@
         "react-beautiful-dnd": "^13.0.0",
         "react-dom": "^17.0.0",
         "react-error-boundary": "^3.1.4",
+        "react-redux": "^8.0.5",
         "react-router": "^6.1.0",
         "react-router-dom": "^6.1.0",
         "react-scripts": "^5.0.0"
@@ -43,8 +45,8 @@
         "build": "yarn node ./build.js",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "predeploy" : "npm run build",
-        "deploy" : "gh-pages -d build"
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "homepage": ".",
     "browserslist": {

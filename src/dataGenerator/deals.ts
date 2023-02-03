@@ -1,4 +1,4 @@
-import { random, lorem } from 'faker/locale/en_US';
+import { random, lorem } from 'faker/locale/en_GB';
 import { add } from 'date-fns';
 
 import { Db } from './types';

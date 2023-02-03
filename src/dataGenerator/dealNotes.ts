@@ -1,4 +1,4 @@
-import { random, lorem } from 'faker/locale/en_US';
+import { random, lorem } from 'faker/locale/en_GB';
 
 import { Db } from './types';
 import { randomDate } from './utils';

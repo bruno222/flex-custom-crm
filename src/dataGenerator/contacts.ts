@@ -5,7 +5,7 @@ import {
     company as fakerCompany,
     phone,
     lorem,
-} from 'faker/locale/en_US';
+} from 'faker/locale/en_GB';
 
 import { randomDate, weightedBoolean } from './utils';
 import { Db } from './types';

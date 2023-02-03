@@ -1,4 +1,4 @@
-import { name, internet } from 'faker/locale/en_US';
+import { name, internet } from 'faker/locale/en_GB';
 
 import { Db } from './types';
 
