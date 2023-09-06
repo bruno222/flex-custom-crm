@@ -1,11 +1,4 @@
-import {
-    name,
-    internet,
-    random,
-    company as fakerCompany,
-    phone,
-    lorem,
-} from 'faker/locale/en_GB';
+import {faker} from '@faker-js/faker/locale/en_GB'
 
 import { randomDate, weightedBoolean } from './utils';
 import { Db } from './types';
@@ -28,16 +21,16 @@ export const generateContacts = (db: Db): Contact[] => {
     return Array.from(Array(500).keys()).map(id => {
         const has_avatar =
             weightedBoolean(25) && numberOfContacts < nbAvailblePictures;
-        const gender = random.arrayElement(genders);
-        const first_name = name.firstName(gender as any);
-        const last_name = name.lastName();
-        const email = internet.email(first_name, last_name);
+        const gender = faker.helpers.arrayElement(genders);
+        const first_name = faker.person.firstName(gender as any);
+        const last_name = faker.person.lastName();
+        const email = faker.internet.email(first_name, last_name);
         const avatar = has_avatar
             ? 'https://marmelab.com/posters/avatar-' +
               (223 - numberOfContacts) +
               '.jpeg'
             : undefined;
-        const title = fakerCompany.bsAdjective();
+        const title = faker.person.jobTitle();
 
         if (has_avatar) {
             numberOfContacts++;
@@ -46,7 +39,7 @@ export const generateContacts = (db: Db): Contact[] => {
         // choose company with people left to know
         let company;
         do {
-            company = random.arrayElement(db.companies);
+            company = faker.helpers.arrayElement(db.companies);
         } while (company.nb_contacts >= maxContacts[company.size]);
         company.nb_contacts++;
 
@@ -63,17 +56,17 @@ export const generateContacts = (db: Db): Contact[] => {
             title: title.charAt(0).toUpperCase() + title.substr(1),
             company_id: company.id,
             email,
-            phone_number1: phone.phoneNumber(),
-            phone_number2: phone.phoneNumber(),
-            background: lorem.sentence(),
-            acquisition: random.arrayElement(['inbound', 'outbound']),
+            phone_number1: faker.phone.number(),
+            phone_number2: faker.phone.number(),
+            background: faker.lorem.sentence(),
+            acquisition: faker.helpers.arrayElement(['inbound', 'outbound']),
             avatar,
             first_seen: first_seen,
             last_seen: last_seen,
             has_newsletter: weightedBoolean(30),
-            status: random.arrayElement(status),
-            tags: random
-                .arrayElements(db.tags, random.arrayElement([0, 0, 0, 1, 1, 2]))
+            status: faker.helpers.arrayElement(status),
+            tags: faker.helpers
+                .arrayElements(db.tags, faker.helpers.arrayElement([0, 0, 0, 1, 1, 2]))
                 .map(tag => tag.id), // finalize
             sales_id: company.sales_id,
             nb_notes: 0,

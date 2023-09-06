@@ -1,9 +1,10 @@
-import { random, lorem } from 'faker/locale/en_GB';
 import { add } from 'date-fns';
 
 import { Db } from './types';
 import { Deal } from '../types';
 import { randomDate } from './utils';
+
+import {faker} from '@faker-js/faker/locale/en_GB'
 
 const type = [
     'Other',
@@ -24,13 +25,13 @@ const stages = [
 
 export const generateDeals = (db: Db): Deal[] => {
     const deals = Array.from(Array(50).keys()).map(id => {
-        const company = random.arrayElement(db.companies);
+        const company = faker.helpers.arrayElement(db.companies);
         company.nb_deals++;
-        const contacts = random.arrayElements(
+        const contacts = faker.helpers.arrayElements(
             db.contacts.filter(contact => contact.company_id === company.id),
-            random.number({ min: 1, max: 3 })
+            faker.helpers.rangeToNumber({ min: 1, max: 3 })
         );
-        const lowercaseName = lorem.words();
+        const lowercaseName = faker.lorem.words();
         const created_at = randomDate(
             new Date(company.created_at)
         ).toISOString();
@@ -39,10 +40,10 @@ export const generateDeals = (db: Db): Deal[] => {
             name: lowercaseName[0].toUpperCase() + lowercaseName.slice(1),
             company_id: company.id,
             contact_ids: contacts.map(contact => contact.id),
-            type: random.arrayElement(type),
-            stage: random.arrayElement(stages),
-            description: lorem.paragraphs(random.number({ min: 1, max: 4 })),
-            amount: random.number(1000) * 100,
+            type: faker.helpers.arrayElement(type),
+            stage: faker.helpers.arrayElement(stages),
+            description: faker.lorem.paragraphs(faker.helpers.rangeToNumber({ min: 1, max: 4 })),
+            amount: faker.helpers.rangeToNumber(1000) * 100,
             created_at: created_at,
             updated_at: randomDate(new Date(created_at)).toISOString(),
             start_at: randomDate(

@@ -9,7 +9,7 @@ import {
   Typography,
   Popover,
   Button,
-  IconButton,
+  IconButton
 } from "@mui/material";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { UserMenu, Logout, LoadingIndicator } from "react-admin";
@@ -23,7 +23,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const iframeShown = useSelector<RootState,boolean>(state => state.flex.show);
 
-  const flexIframe = useRef<HTMLIFrameElement>(null);
+  //const flexIframe = useRef<HTMLIFrameElement>(null);
   const agentButton = useRef<HTMLButtonElement>(null);
 
   useEffect(()=>{
@@ -31,9 +31,9 @@ const Header = () => {
     dispatch(setIframeShown(false));
   },[])
 
-  useEffect(() => {
+  /*useEffect(() => {
     if(flexIframe.current) dispatch(setIframeRef(flexIframe.current))
-  },[flexIframe.current, agentButton.current]);
+  },[flexIframe.current, agentButton.current]);*/
 
   let currentPath = "/";
   if (!!matchPath("/contacts/*", location.pathname)) {
@@ -104,7 +104,7 @@ const Header = () => {
               </Tabs>
             </Box>
             <Box display="flex">
-              <IconButton
+              {/*<IconButton
                 aria-describedby={id}
                 color="inherit"
                 aria-label="menu"
@@ -135,7 +135,7 @@ const Header = () => {
                     marginTop: 2,
                   },
                 }}
-              />
+              />*/}
               <UserMenu>
                 <Logout />
               </UserMenu>

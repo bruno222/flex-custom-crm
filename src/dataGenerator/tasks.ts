@@ -1,7 +1,6 @@
-import { random, lorem } from 'faker/locale/en_GB';
-
 import { Db } from './types';
 import { randomDate } from './utils';
+import {faker} from '@faker-js/faker/locale/en_GB'
 
 const type = [
     'Email',
@@ -33,12 +32,12 @@ const type = [
 
 export const generateTasks = (db: Db) => {
     return Array.from(Array(400).keys()).map(id => {
-        const contact = random.arrayElement(db.contacts);
+        const contact = faker.helpers.arrayElement(db.contacts);
         return {
             id,
             contact_id: contact.id,
-            type: random.arrayElement(type),
-            text: lorem.sentence(),
+            type: faker.helpers.arrayElement(type),
+            text: faker.lorem.sentence(),
             due_date: randomDate(new Date(contact.first_seen)),
             sales_id: contact.sales_id,
         };

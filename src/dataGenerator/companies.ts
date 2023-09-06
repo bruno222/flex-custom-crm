@@ -1,8 +1,9 @@
-import { company, internet, address, phone, random } from 'faker/locale/en_GB';
 import { randomDate } from './utils';
 
 import { Db } from './types';
 import { Company } from '../types';
+
+import {faker} from '@faker-js/faker/locale/en_GB'
 
 const sectors = [
     'Communication Services',
@@ -24,27 +25,27 @@ const regex = /\W+/;
 
 export const generateCompanies = (db: Db): Company[] => {
     return Array.from(Array(55).keys()).map(id => {
-        const name = company.companyName();
+        const name = faker.company.name();
         return {
             id,
             name: name,
             logo: `/logos/${id}.png`,
-            sector: random.arrayElement(sectors),
-            size: random.arrayElement(sizes) as 1 | 10 | 50 | 250 | 500,
+            sector: faker.helpers.arrayElement(sectors),
+            size: faker.helpers.arrayElement(sizes) as 1 | 10 | 50 | 250 | 500,
             linkedIn: `https://www.linkedin.com/company/${name
                 .toLowerCase()
                 .replace(regex, '_')}`,
-            website: internet.url(),
-            phone_number: phone.phoneNumber(),
-            address: address.streetAddress(),
-            zipcode: address.zipCode(),
-            city: address.city(),
-            stateAbbr: address.stateAbbr(),
+            website: faker.internet.url(),
+            phone_number: faker.phone.number(),
+            address: faker.location.streetAddress(),
+            zipcode: faker.location.zipCode(),
+            city: faker.location.city(),
+            stateAbbr: faker.location.stateAbbr(),
             nb_contacts: 0,
             nb_deals: 0,
             // at least 1/3rd of companies for Jane Doe
             sales_id:
-                random.number(2) === 0 ? 0 : random.arrayElement(db.sales).id,
+                faker.helpers.rangeToNumber(2) === 0 ? 0 : faker.helpers.arrayElement(db.sales).id,
             created_at: randomDate().toISOString(),
         };
     });

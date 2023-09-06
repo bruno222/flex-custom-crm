@@ -10,7 +10,6 @@
         "@reduxjs/toolkit": "^1.9.2",
         "clsx": "^1.1.1",
         "date-fns": "^2.19.0",
-        "faker": "~5.4.0",
         "lodash": "~4.17.5",
         "prop-types": "^15.7.2",
         "ra-data-fakerest": "^4.0.0",
@@ -21,11 +20,13 @@
         "react-dom": "^17.0.0",
         "react-error-boundary": "^3.1.4",
         "react-redux": "^8.0.5",
+        "react-resizable": "^3.0.5",
         "react-router": "^6.1.0",
         "react-router-dom": "^6.1.0",
         "react-scripts": "^5.0.0"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.0.2",
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^11.1.0",
         "@testing-library/user-event": "^12.1.10",
@@ -35,6 +36,7 @@
         "@types/react": "^17.0.20",
         "@types/react-beautiful-dnd": "^13.0.0",
         "@types/react-dom": "^17.0.9",
+        "@types/react-resizable": "^3.0.4",
         "gh-pages": "^5.0.0",
         "rewire": "^5.0.0",
         "source-map-explorer": "^2.0.0",
@@ -42,7 +44,7 @@
         "web-vitals": "^1.0.1"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "PORT=3100 react-scripts start",
         "build": "yarn node ./build.js",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
