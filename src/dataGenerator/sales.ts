@@ -20,7 +20,7 @@ export const generateSales = (db: Db) => {
             id: 0,
             first_name: 'Jane',
             last_name: 'Doe',
-            email: 'janedoe@atomic.dev',
+            email: 'janedoe@twilio.com',
         },
         ...randomSales,
     ];

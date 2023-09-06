@@ -9,9 +9,9 @@ import { Welcome } from './Welcome';
 
 export const Dashboard = () => (
     <Grid container spacing={2} mt={1}>
-    <Grid item xs={12} md={12}>
+    {/* <Grid item xs={12} md={12}>
         <Welcome />
-    </Grid>
+    </Grid> */}
         <Grid item xs={12} md={12}>
             <DealsChart />
         </Grid>

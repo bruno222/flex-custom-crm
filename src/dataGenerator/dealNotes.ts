@@ -13,7 +13,7 @@ export const generateDealNotes = (db: Db) => {
             id,
             deal_id: deal.id,
             type: random.arrayElement(type),
-            text: lorem.paragraphs(random.number({ min: 1, max: 4 })),
+            text: lorem.paragraphs(random.number({ min: 1, max: 2 })),
             date: randomDate(
                 new Date(db.companies[deal.company_id as number].created_at)
             ).toISOString(),

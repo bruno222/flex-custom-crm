@@ -7,10 +7,25 @@ import contacts from './contacts';
 import companies from './companies';
 import deals from './deals';
 import { Dashboard } from './dashboard/Dashboard';
+import db from './dataGenerator'
+import localStorageDataProvider from "ra-data-local-storage";
+
+const getDefaultData = () => {
+  return db();
+};
+
+
+
+const getDataProviderWithDefaults = () => {
+  const defaultData = getDefaultData();
+  console.log(defaultData);
+
+  return localStorageDataProvider({ defaultData });
+};
 
 const App = () => (
     <Admin
-        dataProvider={dataProvider}
+        dataProvider={getDataProviderWithDefaults()}
         authProvider={authProvider}
         layout={Layout}
         dashboard={Dashboard}
