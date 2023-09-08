@@ -26,7 +26,7 @@ const flexSlice = createSlice({
       // immutable state based off those changes
       state.show = true
 
-      state.iframeRef?.contentWindow?.postMessage(action.payload,'*');
+      state.iframeRef?.contentWindow?.postMessage({destination: action.payload.destination, taskAttributes: {contactId: 500}, action: "startOutboundCall"},'*');
     },
     setIframeShown: (state: IFlexState, action: PayloadAction<boolean>) => {
       state.show = action.payload;

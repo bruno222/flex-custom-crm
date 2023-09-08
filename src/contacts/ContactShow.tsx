@@ -21,6 +21,7 @@ export const ContactShow = () => (
 );
 
 const ContactShowContent = () => {
+
     const { record, isLoading } = useShowContext<Contact>();
     if (isLoading || !record) return null;
     return (

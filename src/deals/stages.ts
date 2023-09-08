@@ -1,7 +1,7 @@
 export const stages = [
     'opportunity',
     'proposal-sent',
-    'in-negociation',
+    'in-negotiation',
     'won',
     'lost',
     'delayed',
@@ -10,7 +10,7 @@ export const stages = [
 export const stageNames = {
     opportunity: 'Opportunity',
     'proposal-sent': 'Proposal Sent',
-    'in-negociation': 'In Negociation',
+    'in-negotiation': 'In Negotiation',
     won: 'Won',
     lost: 'Lost',
     delayed: 'Delayed',

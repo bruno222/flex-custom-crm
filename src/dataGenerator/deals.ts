@@ -16,7 +16,7 @@ const type = [
 const stages = [
     'opportunity',
     'proposal-sent',
-    'in-negociation',
+    'in-negotiation',
     'won',
     'lost',
     'delayed',

@@ -12,7 +12,7 @@ import { Deal } from '../types';
 const multiplier = {
     opportunity: 0.2,
     'proposal-sent': 0.5,
-    'in-negociation': 0.8,
+    'in-negotiation': 0.8,
     delayed: 0.3,
 };
 

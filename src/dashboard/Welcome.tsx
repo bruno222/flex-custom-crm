@@ -6,10 +6,8 @@ import {
     CardActions,
     Button,
 } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
 import { useDispatch } from 'react-redux'
-import { makeOutboundCall } from '../state/flexStateSlice'
 
 export const Welcome = () => {
   const dispatch = useDispatch()
@@ -51,15 +49,6 @@ export const Welcome = () => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={() => dispatch(makeOutboundCall('+447946180713'))}
-                    startIcon={<HomeIcon />}
-
-                >
-                    React-admin site
-                </Button>
                 <Button
                     variant="contained"
                     fullWidth

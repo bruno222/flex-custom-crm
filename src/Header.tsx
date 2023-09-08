@@ -11,7 +11,7 @@ import {
   Button,
   IconButton
 } from "@mui/material";
-import { Link, matchPath, useLocation } from "react-router-dom";
+import { Link, matchPath, useLocation, useNavigate } from "react-router-dom";
 import { UserMenu, Logout, LoadingIndicator } from "react-admin";
 import { useDispatch } from "react-redux";
 import { setIframeRef, setIframeShown } from "./state/flexStateSlice";
@@ -21,19 +21,6 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const iframeShown = useSelector<RootState,boolean>(state => state.flex.show);
-
-  //const flexIframe = useRef<HTMLIFrameElement>(null);
-  const agentButton = useRef<HTMLButtonElement>(null);
-
-  useEffect(()=>{
-    setAnchorEl(agentButton.current);
-    dispatch(setIframeShown(false));
-  },[])
-
-  /*useEffect(() => {
-    if(flexIframe.current) dispatch(setIframeRef(flexIframe.current))
-  },[flexIframe.current, agentButton.current]);*/
 
   let currentPath = "/";
   if (!!matchPath("/contacts/*", location.pathname)) {
@@ -43,20 +30,6 @@ const Header = () => {
   } else if (!!matchPath("/deals/*", location.pathname)) {
     currentPath = "/deals";
   }
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-    null
-  );
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(setIframeShown(true));
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    dispatch(setIframeShown(false));
-  };
-
-  const id = iframeShown ? "simple-popover" : undefined;
   return (
     <Box component="nav" sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="primary">
@@ -104,38 +77,6 @@ const Header = () => {
               </Tabs>
             </Box>
             <Box display="flex">
-              {/*<IconButton
-                aria-describedby={id}
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-                onClick={handleClick}
-              >
-                <SupportAgentIcon />
-              </IconButton>
-              <Popover keepMounted
-                id={id}
-                open={iframeShown}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-              >
-                <iframe ref={flexIframe} allow="camera;microphone"
-                  src={process.env.REACT_APP_FLEX_URL}
-                  width="500px"
-                  height="900px"
-                ></iframe>
-              </Popover>
-              <LoadingIndicator
-                sx={{
-                  "& .RaLoadingIndicator-loader": {
-                    marginTop: 2,
-                  },
-                }}
-              />*/}
               <UserMenu>
                 <Logout />
               </UserMenu>

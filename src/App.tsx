@@ -10,12 +10,10 @@ import { Dashboard } from './dashboard/Dashboard';
 import db from './dataGenerator'
 import localStorageDataProvider from "ra-data-local-storage";
 
+
 const getDefaultData = () => {
   return db();
 };
-
-
-
 const getDataProviderWithDefaults = () => {
   const defaultData = getDefaultData();
   console.log(defaultData);
@@ -32,10 +30,14 @@ const App = () => (
         theme={{
             ...defaultTheme,
             palette: {
-                background: {
-                    default: '#fafafb',
+                mode: 'light',
+                primary: {
+                  main: '#3f51b5',
                 },
-            },
+                secondary: {
+                  main: '#948b8e',
+                },
+              },
         }}
     >
         <Resource name="deals" {...deals} />
