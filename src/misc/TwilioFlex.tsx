@@ -40,7 +40,6 @@ const TwilioFlex = () => {
     bottom: "auto",
     left: "auto",
     position: "fixed",
-    "border-right-radius": 0,
     "z-index": 9999,
   };
 
