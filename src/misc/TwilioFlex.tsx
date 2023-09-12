@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Paper, Box, Fade, IconButton, Slide } from "@mui/material";
+import {
+  Button,
+  Paper,
+  Box,
+  Fade,
+  IconButton,
+  Slide,
+  Badge
+} from "@mui/material";
 import { SupportAgent, Clear, OpenInFull } from "@mui/icons-material";
 
 import { useDispatch } from "react-redux";
@@ -12,7 +20,10 @@ const TwilioFlex = () => {
   const iframeShown = useSelector<RootState, boolean>(
     (state) => state.flex.show
   );
-  const [iframeExpanded, setIframeWidth] = useState(false)
+  const notificationCount = useSelector<RootState, number>(
+    (state) => state.flex.notificationCount
+  );
+  const [iframeExpanded, setIframeWidth] = useState(false);
 
   const flexIframe = useRef<HTMLIFrameElement>(null);
   const agentButton = useRef<HTMLButtonElement>(null);
@@ -30,7 +41,7 @@ const TwilioFlex = () => {
   };
 
   const toggleIframeExpanded = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIframeWidth(!iframeExpanded)
+    setIframeWidth(!iframeExpanded);
   };
 
   const buttonStyle = {
@@ -62,7 +73,9 @@ const TwilioFlex = () => {
           aria-label="agent"
           onClick={toggleIframe}
         >
-          <SupportAgent />
+          <Badge badgeContent={notificationCount} color="error">
+            <SupportAgent />
+          </Badge>
         </Button>
       </Fade>
 
@@ -75,7 +88,11 @@ const TwilioFlex = () => {
             justifyContent="flex-end"
             alignItems="flex-end"
           >
-            <IconButton aria-label="expand" size="small" onClick={toggleIframeExpanded}>
+            <IconButton
+              aria-label="expand"
+              size="small"
+              onClick={toggleIframeExpanded}
+            >
               <OpenInFull color="secondary" fontSize="small" />
             </IconButton>
             <IconButton aria-label="close" size="small" onClick={toggleIframe}>
@@ -89,9 +106,9 @@ const TwilioFlex = () => {
               src={process.env.REACT_APP_FLEX_URL}
               width={iframeExpanded ? 1100 : 550}
               height="900px"
-              style={{ 
-                border: "0", 
-                transition: "width 0.1s ease-in"
+              style={{
+                border: "0",
+                transition: "width 0.1s ease-in",
               }}
             ></iframe>
           </Box>

@@ -52,7 +52,7 @@ export const ContactAside = ({ link = "edit" }: { link?: "edit" | "show" }) => {
       <Typography variant="body2" mb={3}>
         {record.gender === "male" ? "He/Him" : "She/Her"}
       </Typography>
-      <OutboundCall phoneNumber="+447946180713" />  
+      <OutboundCall phoneNumber={record.phone_number1} />  
       <Typography variant="subtitle2">Background</Typography>
       <Divider />
       <Typography variant="body2" mt={2}>

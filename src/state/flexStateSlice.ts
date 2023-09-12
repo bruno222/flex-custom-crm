@@ -4,13 +4,15 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface IFlexState {
   iframeRef?: HTMLIFrameElement,
   anchorElement?: HTMLButtonElement,
-  show: boolean
+  show: boolean,
+  notificationCount: number
 }
 
 const flexSlice = createSlice({
   name: 'flex',
   initialState: {
-    show: false
+    show: false,
+    notificationCount: 0
   },
   reducers: {
     setIframeRef: (state: IFlexState, action: PayloadAction<HTMLIFrameElement>) => {
@@ -27,15 +29,20 @@ const flexSlice = createSlice({
       state.show = true
 
       state.iframeRef?.contentWindow?.postMessage({destination: action.payload.destination, taskAttributes: {contactId: 500}, action: "startOutboundCall"},'*');
+
+      return state;
     },
     setIframeShown: (state: IFlexState, action: PayloadAction<boolean>) => {
+      if(action.payload) state.notificationCount = 0;
       state.show = action.payload;
+      return state;
+    },
+    incrementNotificationCount: (state: IFlexState) => {
+      if(!state.show) state.notificationCount ++;
     }
-
-
   }
 })
 
-export const { makeOutboundCall, setIframeRef, setIframeShown } = flexSlice.actions
+export const { makeOutboundCall, setIframeRef, setIframeShown, incrementNotificationCount } = flexSlice.actions
 
 export default flexSlice.reducer;

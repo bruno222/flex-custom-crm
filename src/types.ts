@@ -38,6 +38,7 @@ export interface Contact extends RaRecord {
     gender: string;
     sales_id: Identifier;
     nb_notes: number;
+    phone_number1: string;
 }
 
 export interface ContactNote extends RaRecord {
