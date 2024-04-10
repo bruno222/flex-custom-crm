@@ -1,28 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Button,
-  Paper,
-  Box,
-  Fade,
-  IconButton,
-  Slide,
-  Badge
-} from "@mui/material";
-import { SupportAgent, Clear, OpenInFull } from "@mui/icons-material";
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Paper, Box, Fade, IconButton, Slide, Badge } from '@mui/material';
+import { SupportAgent, Clear, OpenInFull } from '@mui/icons-material';
 
-import { useDispatch } from "react-redux";
-import { setIframeRef, setIframeShown } from "../state/flexStateSlice";
-import { RootState } from "../state/store";
-import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { setIframeRef, setIframeShown } from '../state/flexStateSlice';
+import { RootState } from '../state/store';
+import { useSelector } from 'react-redux';
 
 const TwilioFlex = () => {
   const dispatch = useDispatch();
-  const iframeShown = useSelector<RootState, boolean>(
-    (state) => state.flex.show
-  );
-  const notificationCount = useSelector<RootState, number>(
-    (state) => state.flex.notificationCount
-  );
+  const iframeShown = useSelector<RootState, boolean>((state) => state.flex.show);
+  const notificationCount = useSelector<RootState, number>((state) => state.flex.notificationCount);
   const [iframeExpanded, setIframeWidth] = useState(false);
 
   const flexIframe = useRef<HTMLIFrameElement>(null);
@@ -46,69 +34,54 @@ const TwilioFlex = () => {
 
   const buttonStyle = {
     margin: 0,
-    top: "50%",
+    top: '50%',
     right: 0,
-    bottom: "auto",
-    left: "auto",
-    position: "fixed",
-    "z-index": 9999,
+    bottom: 'auto',
+    left: 'auto',
+    position: 'fixed',
+    'z-index': 9999,
   };
 
   const iframeStyle = {
     margin: 0,
-    top: "auto",
+    top: 'auto',
     right: 10,
     bottom: 10,
-    left: "auto",
-    position: "fixed",
-    "z-index": 9999,
+    left: 'auto',
+    position: 'fixed',
+    'z-index': 9999,
   };
 
   return (
     <>
       <Fade in={!iframeShown}>
-        <Button
-          sx={buttonStyle}
-          variant="contained"
-          aria-label="agent"
-          onClick={toggleIframe}
-        >
-          <Badge badgeContent={notificationCount} color="error">
+        <Button sx={buttonStyle} variant='contained' aria-label='agent' onClick={toggleIframe}>
+          <Badge badgeContent={notificationCount} color='error'>
             <SupportAgent />
           </Badge>
         </Button>
       </Fade>
 
-      <Slide direction="left" in={iframeShown}>
+      <Slide direction='left' in={iframeShown}>
         <Paper sx={iframeStyle}>
-          <Box
-            bgcolor="primary.main"
-            borderRadius={"5px 5px 0px 0px"}
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="flex-end"
-          >
-            <IconButton
-              aria-label="expand"
-              size="small"
-              onClick={toggleIframeExpanded}
-            >
-              <OpenInFull color="secondary" fontSize="small" />
+          <Box bgcolor='primary.main' borderRadius={'5px 5px 0px 0px'} display='flex' justifyContent='flex-end' alignItems='flex-end'>
+            <IconButton aria-label='expand' size='small' onClick={toggleIframeExpanded}>
+              <OpenInFull color='secondary' fontSize='small' />
             </IconButton>
-            <IconButton aria-label="close" size="small" onClick={toggleIframe}>
-              <Clear color="secondary" fontSize="small" />
+            <IconButton aria-label='close' size='small' onClick={toggleIframe}>
+              <Clear color='secondary' fontSize='small' />
             </IconButton>
           </Box>
           <Box>
             <iframe
               ref={flexIframe}
-              allow="camera;microphone"
+              allow='camera;microphone'
               src={process.env.REACT_APP_FLEX_URL}
               width={iframeExpanded ? 1100 : 550}
-              height="900px"
+              height='900px'
               style={{
-                border: "0",
-                transition: "width 0.1s ease-in",
+                border: '0',
+                transition: 'width 0.1s ease-in',
               }}
             ></iframe>
           </Box>
