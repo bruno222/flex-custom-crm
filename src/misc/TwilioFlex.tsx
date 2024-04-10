@@ -76,7 +76,7 @@ const TwilioFlex = () => {
             <iframe
               ref={flexIframe}
               allow='camera;microphone'
-              src={process.env.REACT_APP_FLEX_URL}
+              src='https://flex.twilio.com'
               width={iframeExpanded ? 1100 : 550}
               height='900px'
               style={{
