@@ -76,7 +76,7 @@ const TwilioFlex = () => {
             <iframe
               ref={flexIframe}
               allow='camera;microphone'
-              src='https://flex.twilio.com'
+              src='https://flex.twilio.com/agent-desktop/'
               width={iframeExpanded ? 1100 : 550}
               height='900px'
               style={{
