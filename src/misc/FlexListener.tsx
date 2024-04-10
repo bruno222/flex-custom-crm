@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCreate } from "react-admin";
-import { ContactNote } from "../types";
-import { useDispatch } from "react-redux";
-import { incrementNotificationCount } from "../state/flexStateSlice";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCreate } from 'react-admin';
+import { ContactNote } from '../types';
+import { useDispatch } from 'react-redux';
+import { incrementNotificationCount } from '../state/flexStateSlice';
 
 interface FlexEvent {
   flexEventType: string;
@@ -47,29 +47,29 @@ export default () => {
       return data.taskAttributes?.conversations?.outcome;
     }
 
-    return "No summary provided by agent";
+    return 'No summary provided by agent';
   };
 
   const getContactNoteType = (data: CompleteTaskEvent): string => {
     const direction = data.taskAttributes?.direction;
-    const firstPart = `${direction ? direction + " " : ""}`;
+    const firstPart = `${direction ? direction + ' ' : ''}`;
 
     if (data.taskAttributes?.channelType) {
       return `${firstPart}${data.taskAttributes?.channelType}`;
     } else if (data.taskAttributes?.caller) {
       return `${firstPart}call`;
-    } else return "contact";
+    } else return 'contact';
   };
 
   const screenPop = (data: SwitchTaskEvent) => {
     //if we have the contact ID pop it
     if (data.taskAttributes?.dealId) {
       //nav to contact
-      console.log("crm: navigating to contact");
+      console.log('crm: navigating to contact');
       navigate(`deals/${data.taskAttributes.dealId}/show`);
     } else if (data.taskAttributes?.contactId) {
       //nav to contact
-      console.log("crm: navigating to contact");
+      console.log('crm: navigating to contact');
       navigate(`contacts/${data.taskAttributes.contactId}/show`);
     } else {
       //new contact
@@ -84,8 +84,8 @@ export default () => {
 
       //if we have the contact ID pop it
       if (data.taskAttributes?.dealId) {
-        console.log("creating note: deal note", noteContent, noteType);
-        create("dealNotes", {
+        console.log('creating note: deal note', noteContent, noteType);
+        create('dealNotes', {
           data: {
             text: getContactNoteContent(data),
             contact_id: data.taskAttributes?.dealId,
@@ -95,8 +95,8 @@ export default () => {
           },
         });
       } else if (data.taskAttributes?.contactId) {
-        console.log("creating note: contact note", noteContent, noteType);
-        create("contactNotes", {
+        console.log('creating note: contact note', noteContent, noteType);
+        create('contactNotes', {
           data: {
             text: noteContent,
             contact_id: data.taskAttributes?.contactId,
@@ -110,9 +110,9 @@ export default () => {
         navigate(`/contacts/create`);
       }
 
-      console.error("creating note: created");
+      console.error('creating note: created');
     } catch (error: any) {
-      console.error("creating note: error", error);
+      console.error('creating note: error', error);
     }
   };
 
@@ -121,25 +121,25 @@ export default () => {
   };
 
   useEffect(() => {
-    window.addEventListener("message", function (event) {
+    window.addEventListener('message', function (event) {
       let data: FlexEvent | undefined;
       try {
         data = JSON.parse(event.data);
       } catch (error: any) {
-        console.debug("Error when receiving message from child frame.", error);
+        console.debug('Error when receiving message from child frame.', error);
       }
       if (data) {
         if (data.flexEventType) {
-          console.log("Message received from Flex: ", data);
+          console.log('Message received from Flex: ', data);
 
           switch (data.flexEventType) {
-            case "SelectTask":
+            case 'SelectTask':
               screenPop(data);
               break;
-            case "CompleteTask":
+            case 'CompleteTask':
               updateRecordWithContact(data);
               break;
-            case "ReservationCreated":
+            case 'ReservationCreated':
               reservationCreatedHandler(data);
               break;
           }
